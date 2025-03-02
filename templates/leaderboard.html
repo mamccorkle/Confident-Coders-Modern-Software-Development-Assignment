@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ game_name }} Leaderboard</title>
+
+</head>
+<body>
+  <h1>{{ game_name }} Leaderboard</h1>
+  <table border="1">
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Player</th>
+        <th>Score</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for rank, player_name, score in data %}
+      <tr>
+        <td>{{ rank }}</td>
+        <td>{{ player_name }}</td>
+        <td>{{ score }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</body>
+</html>
