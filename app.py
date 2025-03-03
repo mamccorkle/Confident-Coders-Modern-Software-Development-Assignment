@@ -3,6 +3,16 @@ import sqlite3
 
 app = Flask(__name__)
 
+
+
+
+########################################################################################################################
+##  Functions:                                                                                                           ##
+########################################################################################################################
+
+
+
+
 # This function will get a list of all games so that it can be displayed on the main landing page:
 def get_all_games():
     conn = sqlite3.connect('MSD-P01-LeaderBoard.sqlite')
@@ -36,6 +46,17 @@ def get_leaderboard_data(game_name):
     conn.close()
     return rows
 
+# Add user score to the leaderboard:
+def add_leaderboard_entry(game_name, player_name, score, rank):
+    conn = sqlite3.connect('MSD-P01-LeaderBoard.sqlite')
+    cursor = conn.cursor()
+    cursor.execute('''
+        INSERT INTO leaderboard (game_id, player_name, score, rank)
+        VALUES ((SELECT game_id FROM games WHERE game_name = ?), ?, ?, ?);
+    ''', (game_name, player_name, score, rank))
+    conn.commit()
+    conn.close()
+
 # This function will add a new game to the database:
 def add_game_to_db(game_name, description):
     conn = sqlite3.connect('MSD-P01-LeaderBoard.sqlite')
@@ -44,8 +65,23 @@ def add_game_to_db(game_name, description):
     conn.commit()
     conn.close()
 
+# This function will remove a game from the database:
+def delete_game_from_db(game_id):
+    conn = sqlite3.connect('MSD-P01-LeaderBoard.sqlite')
+    cursor = conn.cursor()
+    cursor.execute("DELETE FROM games WHERE game_id = ?", (game_id,))
+    conn.commit()
+    conn.close()
 
-## Routes:
+
+
+
+########################################################################################################################
+##  Routes:                                                                                                           ##
+########################################################################################################################
+
+
+
 
 # Main landing page route with GET and POST to allow for adding games to the database:
 @app.route('/', methods=['GET', 'POST'])
@@ -56,13 +92,21 @@ def home():
 
 
 # Leaderboard for an individual game:
-@app.route('/leaderboard/<game_name>')
+@app.route('/leaderboard/<game_name>', methods=['GET', 'POST'])
 def leaderboard(game_name):
-    data = get_leaderboard_data(game_name)
-    return render_template('leaderboard.html', game_name=game_name, data=data)
+    if request.method == 'POST':
+        # If the form is submitted, insert the new leaderboard entry
+        player_name = request.form['player_name']
+        score = request.form['score']
+        rank = request.form['rank']
+        add_leaderboard_entry(game_name, player_name, score, rank)
+        return redirect(url_for('leaderboard', game_name=game_name))
+
+    # GET request: display the leaderboard for the specific game
+    leaderboard_data = get_leaderboard_data(game_name)
+    return render_template('leaderboard.html', game_name=game_name, leaderboard=leaderboard_data)
 
 # Route to a games details page:
-# Game Details page
 @app.route('/game/<int:game_id>')
 def game_details(game_id):
     game = get_game_details(game_id)
@@ -71,6 +115,7 @@ def game_details(game_id):
     else:
         return "Game not found", 404
 
+# Add the game to the database:
 @app.route('/add_game', methods=['GET', 'POST'])
 def add_game():
     if request.method == 'POST':
@@ -83,8 +128,12 @@ def add_game():
 
         # Redirect to the homepage to show the updated list of games
         return redirect(url_for('home'))
-    else:
-        print("test")
+
+# Delete the game listed in the database:
+@app.route('/delete_game/<int:game_id>', methods=['POST'])
+def delete_game(game_id):
+    delete_game_from_db(game_id)
+    return redirect(url_for('home'))
 
 
 if __name__ == '__main__':

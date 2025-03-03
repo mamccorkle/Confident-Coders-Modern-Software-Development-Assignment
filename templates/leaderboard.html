@@ -1,30 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{{ game_name }} Leaderboard</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ game_name }} Leaderboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-  <h1>{{ game_name }} Leaderboard</h1>
-  <table border="1">
-    <thead>
-      <tr>
-        <th>Rank</th>
-        <th>Player</th>
-        <th>Score</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for rank, player_name, score in data %}
-      <tr>
-        <td>{{ rank }}</td>
-        <td>{{ player_name }}</td>
-        <td>{{ score }}</td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">{{ game_name }} Leaderboard</h1>
+
+        <h2 class="mt-5">Current Leaderboard</h2>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Rank #</th>
+                    <th>Player Name</th>
+                    <th>Score</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for entry in leaderboard %}
+                    <tr>
+                        <td>{{ entry[0] }}</td>
+                        <td>{{ entry[1] }}</td>
+                        <td>{{ entry[2] }}</td>
+                        <td>{{ entry[3] }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <h2 class="mt-5">Add New Stats</h2>
+        <form action="/leaderboard/{{ game_name }}" method="POST">
+            <div class="mb-3">
+                <label for="player_name" class="form-label">Player Name</label>
+                <input type="text" class="form-control" id="player_name" name="player_name" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="score" class="form-label">Score</label>
+                <input type="number" class="form-control" id="score" name="score" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="rank" class="form-label">Rank</label>
+                <input type="number" class="form-control" id="rank" name="rank" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Add Stats</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
