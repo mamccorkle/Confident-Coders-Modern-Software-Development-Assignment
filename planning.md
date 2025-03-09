@@ -68,9 +68,10 @@ flowchart TD
 
 # List of Endpoints
 
-> Routes (GET/POST) and expected input/output.
-
-| Route                    | Description            |
-| ------------------------ | ---------------------- |
-| /                        | Main landing page      |
-| /leaderboard/<game_name> | Stats for a given game |
+| Route                      | Description                                | Method     | Input                               | Output                               
+|----------------------------|--------------------------------------------|------------|-------------------------------------|--------------------------------------
+| /                          | Main landing page                          | GET / POST | N\A                                 | render_template('index.html')        
+| /leaderboard/<game_name>   | Stats for a given game                     | GET / POST | game_name, player_name, score, rank | render_template('leaderboard.html')  
+| /game/<int:game_id>        | Route to a games details page              | GET / POST | game_id                             | render_template('game_details.html') 
+| /add_game                  | Add a new game to the database             | GET / POST | game_name, description              | URL Redirect(Home)                   
+| /delete_game/<int:game_id> | Delete the game selected from the database | POST       | game_id                             | URL Redirect(Home)
