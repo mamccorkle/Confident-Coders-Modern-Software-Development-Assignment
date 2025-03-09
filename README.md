@@ -164,6 +164,9 @@
     │   ├── leaderboard.html            # Leaderboard(Score) Page
     └── static/
         └── style.css                   # Sitewide Styles
+        └── 10954552.jpg                # Header Image
+        └── favicon.ico                 # Browser Tab Icon
+        
 ```
 
 # How to use the app
