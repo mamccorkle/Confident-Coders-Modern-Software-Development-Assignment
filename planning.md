@@ -55,15 +55,16 @@ erDiagram
 
 # User Flow Diagram
 
-> Pages of the app and how they connect. 
-
 ```mermaid
-flowchart TD
+flowchart TD  
     A[Home Page] --> B[Select Game]
-    B --> C[View Leaderboard]
-    C --> D[Return to Home Page]
-    B --> F[View Game Details]
-    F --> D
+    B --> C[View Game Details]
+    C --> F[Return to Home Page]
+    C --> D[View Leaderboard]
+    B --> D
+    D --> G[Add Stats]
+    D --> F[Return to Home Page]
+    B --> E[Delete Game]
 ```
 
 # List of Endpoints
