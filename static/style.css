@@ -1,0 +1,182 @@
+/* General Page Style */
+body {
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    /*font-family: 'Arial', sans-serif;*/
+    font-family: 'Roboto', sans-serif;
+    color: #fff;
+}
+
+h1, h2 {
+    color: #fff;
+}
+
+.container {
+    background: rgba(0, 0, 0, 0.6);
+    padding: 40px;
+    border-radius: 10px;
+}
+
+/* Cards Styling */
+.card {
+    background-color: rgba(0, 0, 0, 0.7);
+    border: none;
+    border-radius: 15px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card-title {
+    color: #ffcb00;
+    font-weight: bold;
+}
+
+.card-text {
+    color: #f5f5f5;
+    margin-bottom: 15px;
+}
+
+/* Buttons Styling */
+.btn-info, .btn-primary, .btn-danger {
+    border-radius: 30px;
+    padding: 10px 20px;
+    font-size: 14px;
+}
+
+.btn-info {
+    background-color: #00bcd4;
+    border: none;
+}
+
+.btn-info:hover {
+    background-color: #00acc1;
+}
+
+.btn-primary {
+    background-color: #2196f3;
+    border: none;
+}
+
+.btn-primary:hover {
+    background-color: #1976d2;
+}
+
+.btn-danger {
+    background-color: #f44336;
+    border: none;
+}
+
+.btn-danger:hover {
+    background-color: #e53935;
+}
+
+/* Form Styling */
+form {
+    /*background-color: rgba(0, 0, 0, 0.7);*/
+    /*padding: 30px;*/
+    border-radius: 10px;
+}
+
+.form-control {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    border-radius: 5px;
+}
+
+.form-label {
+    color: #fff;
+}
+
+/* Hover Effects */
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Card Hover Effect */
+.card {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Hover Effect */
+.btn-info:hover, .btn-primary:hover, .btn-danger:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+    animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.card:nth-child(even) {
+    animation-delay: 0.2s;
+}
+
+.card:nth-child(odd) {
+    animation-delay: 0.4s;
+}
+
+.hero {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+    font-size: 2rem;
+}
+
+/* Ensure the table has fixed column widths */
+table.table {
+    table-layout: fixed;
+    width: 100%; /* Make the table fill the container */
+}
+
+/* Optionally, you can define widths for specific columns */
+table.table th, table.table td {
+    word-wrap: break-word; /* Prevents text overflow */
+}
+
+/* Set equal column widths */
+table.table th:nth-child(1),
+table.table td:nth-child(1) {
+    width: 35%; /* Adjust this as needed */
+}
+
+table.table th:nth-child(2),
+table.table td:nth-child(2) {
+    width: 35%; /* Adjust this as needed */
+}
+
+table.table th:nth-child(3),
+table.table td:nth-child(3) {
+    width: 35%; /* Adjust this as needed */
+}
