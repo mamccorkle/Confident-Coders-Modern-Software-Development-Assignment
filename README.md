@@ -145,5 +145,8 @@
 >  > Additionally, a user can add new stats by adding the following details (bottom of page):<br /><br />&nbsp;&nbsp;- Player Name<br />&nbsp;&nbsp;- Score<br />&nbsp;&nbsp;- Rank<br />
 
 # Screenshots
-> from your working project
+
+[<img src="https://github.com/Cmalonzo1/Confident-Coders-Modern-Software-Development-Assignment/blob/master/Home.png">]
+[<img src="https://github.com/Cmalonzo1/Confident-Coders-Modern-Software-Development-Assignment/blob/master/GameDetails.png">]
+[<img src="https://github.com/Cmalonzo1/Confident-Coders-Modern-Software-Development-Assignment/blob/master/Leaderboard.png">]
 
