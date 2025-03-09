@@ -9,8 +9,6 @@
 
 # Required Features
 
-> (Must-have for minimum functionality)
-
 > Add/Remove Games
 > Add/Remove Scores
 
@@ -32,8 +30,6 @@
 > As a player, I would like to edit my scores
 
 # Database Schema (ERD)
-
-> Tables, their columns, and relationships.
 
 ```mermaid
 erDiagram
