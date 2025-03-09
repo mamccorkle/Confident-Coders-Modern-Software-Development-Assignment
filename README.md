@@ -1,10 +1,13 @@
+# Project name
+> Leaderboard App is an application that will allow you to see the top scores and rankings of popular games and users from around the world! This application will use Pythons Flask Framework and the Jinja v2 templating engine and SQLite as database storage.and a short description
+
 # Team:<br/>
 > ## Confident Coders<br/>
 > 
-> Team Members:<br/>
-> &nbsp;&nbsp;&nbsp;&nbsp;- Carson Alonzo<br/>
-> &nbsp;&nbsp;&nbsp;&nbsp;- Estefania Ramirez<br/>
-> &nbsp;&nbsp;&nbsp;&nbsp;- Mark McCorkle<br/>
+> &nbsp;&nbsp;Team Members:<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Carson Alonzo<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Estefania Ramirez<br/>
+> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- Mark McCorkle<br/>
 
 # Software:<br/>
 > &nbsp;&nbsp;&nbsp;&nbsp;Python<br/>
@@ -14,8 +17,19 @@
 > &nbsp;&nbsp;&nbsp;&nbsp;Flask<br/>
 > &nbsp;&nbsp;&nbsp;&nbsp;Jinja2
 
-# Project name
-> Leaderboard App is an application that will allow you to see the top scores and rankings of popular games and users from around the world! This application will use Pythons Flask Framework and the Jinja v2 templating engine and SQLite as database storage.and a short description
+# Database:<br />
+> SQLite
+
+# Python Dependencies:<br />
+> Flask==3.1.0
+>   - blinker [required: >=1.9, installed: 1.9.0]
+>   - click [required: >=8.1.3, installed: 8.1.8]
+>     - colorama [required: Any, installed: 0.4.6]
+>   - itsdangerous [required: >=2.2, installed: 2.2.0]
+>   - Jinja2 [required: >=3.1.2, installed: 3.1.6]
+>     - MarkupSafe [required: >=2.0, installed: 3.0.2]
+>   - Werkzeug [required: >=3.1, installed: 3.1.3]
+>     - MarkupSafe [required: >=2.1.1, installed: 3.0.2]
 
 # Setup instructions
 > [!NOTE]  
@@ -136,6 +150,21 @@
 > 
 > This will start your application, assuming all dependencies are installed and the environment is properly set up.
 
+# Project Structure:
+```
+├── flask/
+    ├── app.py                          # Main Program
+    ├── MSD-P01-LeaderBoard.sqlite      # Database
+    ├── planning.md                     # Planning Document
+    ├── README.md                       # Instructions/Intro
+    ├── requirements.txt                # Python Dependencies
+    ├── templates/
+    │   ├── index.html                  # Main Page
+    │   ├── game_details.html           # Game Details Page
+    │   ├── leaderboard.html            # Leaderboard(Score) Page
+    └── static/
+        └── style.css                   # Sitewide Styles
+```
 
 # How to use the app
 > * Once you arrive at the site you wil be presented with a list of games (presented as cards)
