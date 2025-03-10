@@ -46,6 +46,48 @@ def get_leaderboard_data(game_name):
     conn.close()
     return rows
 
+def test_get_leaderboard_data(game_id):
+    # Connect to the SQLite database (using an in-memory database for testing)
+    conn = sqlite3.connect(':memory:')
+    cursor = conn.cursor()
+
+    # Create the games and leaderboard tables
+    cursor.execute('''
+    CREATE TABLE games (
+        game_id INTEGER PRIMARY KEY,
+        game_name TEXT,
+        description TEXT
+    )''')
+
+    cursor.execute('''
+    CREATE TABLE leaderboard (
+        leaderboard_id INTEGER PRIMARY KEY,
+        game_id INTEGER,
+        player_name TEXT,
+        score INTEGER,
+        rank INTEGER,
+        FOREIGN KEY (game_id) REFERENCES games(game_id)
+    )''')
+
+    # Insert example data
+    cursor.execute("INSERT INTO games (game_name, description) VALUES ('Game A', 'A fun game')")
+    cursor.execute("INSERT INTO leaderboard (game_id, player_name, score, rank) VALUES (1, 'Player1', 100, 1)")
+    cursor.execute("INSERT INTO leaderboard (game_id, player_name, score, rank) VALUES (1, 'Player2', 90, 2)")
+    cursor.execute("INSERT INTO leaderboard (game_id, player_name, score, rank) VALUES (1, 'Player3', 80, 3)")
+
+    # Fetch the leaderboard data ordered by rank
+    cursor.execute('''
+    SELECT player_name, score, rank FROM leaderboard
+    WHERE game_id = ?
+    ORDER BY rank ASC
+    ''', (game_id,))
+
+    leaderboard_data = cursor.fetchall()
+
+    conn.close()
+
+    return leaderboard_data
+
 # Add user score to the leaderboard:
 def add_leaderboard_entry(game_name, player_name, score, rank):
     conn = sqlite3.connect('MSD-P01-LeaderBoard.sqlite')
