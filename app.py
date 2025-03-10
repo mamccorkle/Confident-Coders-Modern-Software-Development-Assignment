@@ -35,13 +35,23 @@ def get_game_details(game_id):
 def get_leaderboard_data(game_name):
     conn = sqlite3.connect('MSD-P01-LeaderBoard.sqlite')
     cursor = conn.cursor()
+
+    cursor.execute("SELECT game_id FROM games WHERE game_name = ?", (game_name,))
+
+    # Fetch the result
+    result = cursor.fetchone()
+
+    # Check if a result was found
+    if result:
+        game_id = result[0]
+    else:
+        game_id = None
+
     cursor.execute("""
-        SELECT l.rank, l.player_name, l.score
-        FROM leaderboard l
-        JOIN games g ON l.game_id = g.game_id
-        WHERE g.game_name = ?
-        ORDER BY l.rank
-    """, (game_name,))
+    SELECT rank, player_name, score FROM leaderboard
+    WHERE game_id = ?
+    ORDER BY rank ASC
+    """, (game_id,))
     rows = cursor.fetchall()
     conn.close()
     return rows
@@ -77,7 +87,7 @@ def test_get_leaderboard_data(game_id):
 
     # Fetch the leaderboard data ordered by rank
     cursor.execute('''
-    SELECT player_name, score, rank FROM leaderboard
+    SELECT rank, player_name, score FROM leaderboard
     WHERE game_id = ?
     ORDER BY rank ASC
     ''', (game_id,))
