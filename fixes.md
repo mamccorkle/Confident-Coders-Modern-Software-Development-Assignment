@@ -16,5 +16,5 @@
 
 > Implemented new SQL queries that fixed the bug(s):<br /><br />
 >       * 100% Success rate *<br /><br />
->       Test 1:<br /><img src=""><br /><br />
->       Test 2:<br /><img src=""><br /><br />
+>       Test 1:<br /><img src="https://github.com/Cmalonzo1/Confident-Coders-Modern-Software-Development-Assignment/blob/master-testing/TestFix1.png"><br /><br />
+>       Test 2:<br /><img src="https://github.com/Cmalonzo1/Confident-Coders-Modern-Software-Development-Assignment/blob/master-testing/TestFix2.png"><br /><br />
