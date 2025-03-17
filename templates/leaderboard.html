@@ -21,19 +21,27 @@
                 </tr>
             </thead>
             <tbody>
-                {% for entry in leaderboard %}
-                    <tr>
-                        <td>{{ entry[0] }}</td>
-                        <td>{{ entry[1] }}</td>
-                        <td>{{ entry[2] }}</td>
-                        <td>{{ entry[3] }}</td>
-                    </tr>
-                {% endfor %}
-            </tbody>
+    {% for entry in leaderboard %}
+        <!-- Main Row -->
+        <tr data-bs-toggle="collapse" data-bs-target="#entry-details-{{ entry[0] }}" aria-expanded="false" aria-controls="entry-details-{{ entry[0] }}" style="cursor: pointer;">
+            <td>{{ entry[0] }}</td>
+            <td>{{ entry[1] }}</td>
+            <td>{{ entry[2] }}</td>
+        </tr>
+        <!-- Collapsible Dropdown -->
+        <tr class="collapse" id="entry-details-{{ entry[0] }}">
+            <td colspan="3">
+                <div class="p-3">
+                </div>
+            </td>
+        </tr>
+    {% endfor %}
+</tbody>
+
         </table>
 
         <h2 class="mt-5">Add New Stats</h2>
-        <form action="/leaderboard/{{ game_name }}" method="POST">
+        <form action="/leaderboard/{{ game_name }}" method="POST" enctype="multipart/form-data">
             <div class="mb-3">
                 <label for="player_name" class="form-label">Player Name</label>
                 <input type="text" class="form-control" id="player_name" name="player_name" required>
@@ -47,6 +55,13 @@
             <div class="mb-3">
                 <label for="rank" class="form-label">Rank</label>
                 <input type="number" class="form-control" id="rank" name="rank" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="video_submission" class="form-label">Video Submission</label>
+                <input type="file" class="form-control" id="video_file" name="video_file">
+                <input type="url" class="form-control mt-2" id="video_link" name="video_link"
+                       placeholder="Or provide a link">
             </div>
 
             <a href="/" class="btn btn-secondary">Back to Home</a>

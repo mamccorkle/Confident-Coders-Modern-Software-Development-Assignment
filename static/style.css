@@ -180,3 +180,39 @@ table.table th:nth-child(3),
 table.table td:nth-child(3) {
     width: 35%; /* Adjust this as needed */
 }
+
+/* Smooth height transition for Bootstrap collapse */
+.collapse {
+    transition: height .5s ease; /* Smooth transition with 0.5s duration */
+}
+
+.collapse.show {
+    height: 500px !important; /* Automatically adjust height for expanded content */
+}
+
+.collapse:not(.show) {
+    height: 0 !important; /* Collapsed content height */
+    overflow: hidden; /* Ensure no content leaks out during collapse */
+}
+
+
+
+/* for video submissions. Gonna make this later
+.list-group-item {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    padding: 15px;
+    position: relative;
+    background-color: #f9f9f9;
+}
+
+video {
+    max-height: 400px;
+    max-width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+*/
+

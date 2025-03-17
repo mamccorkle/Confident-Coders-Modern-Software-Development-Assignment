@@ -47,13 +47,13 @@ def get_leaderboard_data(game_name):
     return rows
 
 # Add user score to the leaderboard:
-def add_leaderboard_entry(game_name, player_name, score, rank):
+def add_leaderboard_entry(game_name, player_name, score, rank, video_submission):
     conn = sqlite3.connect('MSD-P01-LeaderBoard.sqlite')
     cursor = conn.cursor()
     cursor.execute('''
         INSERT INTO leaderboard (game_id, player_name, score, rank)
         VALUES ((SELECT game_id FROM games WHERE game_name = ?), ?, ?, ?);
-    ''', (game_name, player_name, score, rank))
+    ''', (game_name, player_name, score, rank, video_submission))
     conn.commit()
     conn.close()
 
@@ -99,7 +99,8 @@ def leaderboard(game_name):
         player_name = request.form['player_name']
         score = request.form['score']
         rank = request.form['rank']
-        add_leaderboard_entry(game_name, player_name, score, rank)
+        video_submission = request.form['video_submission']
+        add_leaderboard_entry(game_name, player_name, score, rank, video_submission)
         return redirect(url_for('leaderboard', game_name=game_name))
 
     # GET request: display the leaderboard for the specific game
