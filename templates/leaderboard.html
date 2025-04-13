@@ -24,7 +24,16 @@
     {% for entry in leaderboard %}
         <!-- Main Row -->
         <tr data-bs-toggle="collapse" data-bs-target="#entry-details-{{ entry[0] }}" aria-expanded="false" aria-controls="entry-details-{{ entry[0] }}" style="cursor: pointer;">
-            <td>{{ entry[0] }}</td>
+            <td>
+                {{ entry[0] }}
+                {% if entry[0] == 1 %}
+                    🥇
+                {% elif entry[0] == 2 %}
+                    🥈
+                {% elif entry[0] == 3 %}
+                    🥉
+                {% endif %}
+            </td>
             <td>{{ entry[1] }}</td>
             <td>{{ entry[2] }}</td>
         </tr>
