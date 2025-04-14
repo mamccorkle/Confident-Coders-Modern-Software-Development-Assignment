@@ -36,24 +36,31 @@ def get_leaderboard_data(game_name):
     conn = sqlite3.connect('MSD-P01-LeaderBoard.sqlite')
     cursor = conn.cursor()
     cursor.execute("""
-        SELECT l.rank, l.player_name, l.score
+        SELECT l.player_name, l.score
         FROM leaderboard l
         JOIN games g ON l.game_id = g.game_id
         WHERE g.game_name = ?
-        ORDER BY l.rank
+        ORDER BY l.score DESC
     """, (game_name,))
     rows = cursor.fetchall()
     conn.close()
-    return rows
+
+    # Add the rank dynamically:
+    leaderboard_data = []
+    for i, row in enumerate(rows, start=1):
+        # Rank, Player Name, Score:
+        leaderboard_data.append((i, row[0], row[1]))
+
+    return leaderboard_data
 
 # Add user score to the leaderboard:
-def add_leaderboard_entry(game_name, player_name, score, rank, video_submission):
+def add_leaderboard_entry(game_name, player_name, score, video_submission):
     conn = sqlite3.connect('MSD-P01-LeaderBoard.sqlite')
     cursor = conn.cursor()
     cursor.execute('''
-        INSERT INTO leaderboard (game_id, player_name, score, rank)
+        INSERT INTO leaderboard (game_id, player_name, score, video_link)
         VALUES ((SELECT game_id FROM games WHERE game_name = ?), ?, ?, ?);
-    ''', (game_name, player_name, score, rank, video_submission))
+    ''', (game_name, player_name, score, video_submission))
     conn.commit()
     conn.close()
 
@@ -95,12 +102,18 @@ def home():
 @app.route('/leaderboard/<game_name>', methods=['GET', 'POST'])
 def leaderboard(game_name):
     if request.method == 'POST':
+
         # If the form is submitted, insert the new leaderboard entry
         player_name = request.form['player_name']
         score = request.form['score']
-        rank = request.form['rank']
-        video_submission = request.form['video_submission']
-        add_leaderboard_entry(game_name, player_name, score, rank, video_submission)
+        video_submission = request.form.get('video_submission')
+
+        # Check for valid input:
+        if not video_submission:
+            video_submission = None
+
+        # Add the entry:
+        add_leaderboard_entry(game_name, player_name, score, video_submission)
         return redirect(url_for('leaderboard', game_name=game_name))
 
     # GET request: display the leaderboard for the specific game
