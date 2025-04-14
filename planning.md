@@ -43,7 +43,7 @@ erDiagram
         INTEGER game_id FK
         STRING player_name
         INTEGER score
-        INTEGER rank
+        TEXT video_link
     }
 
     GAMES ||--o| LEADERBOARD: "has"
@@ -72,3 +72,7 @@ flowchart TD
 | /game/<int:game_id>        | Route to a games details page              | GET / POST | game_id                             | render_template('game_details.html') 
 | /add_game                  | Add a new game to the database             | GET / POST | game_name, description              | URL Redirect(Home)                   
 | /delete_game/<int:game_id> | Delete the game selected from the database | POST       | game_id                             | URL Redirect(Home)
+
+# Added Features:
+
+Leadership board ranking system. This system allows for the proper ranking of leaderboard entries based on scores added.

@@ -178,7 +178,7 @@
 
 # Screenshots
 
-[<img src="https://github.com/Cmalonzo1/Confident-Coders-Modern-Software-Development-Assignment/blob/master/Home.png">]
-[<img src="https://github.com/Cmalonzo1/Confident-Coders-Modern-Software-Development-Assignment/blob/master/GameDetails.png">]
-[<img src="https://github.com/Cmalonzo1/Confident-Coders-Modern-Software-Development-Assignment/blob/master/Leaderboard.png">]
+<img src="https://github.com/Cmalonzo1/Confident-Coders-Modern-Software-Development-Assignment/blob/master/Home.png">
+<img src="https://github.com/Cmalonzo1/Confident-Coders-Modern-Software-Development-Assignment/blob/master/GameDetails.png">
+<img src="https://github.com/Cmalonzo1/Confident-Coders-Modern-Software-Development-Assignment/blob/master/Leaderboard.png">
 
