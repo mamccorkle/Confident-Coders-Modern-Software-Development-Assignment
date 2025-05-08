@@ -30,7 +30,7 @@ jobs:
             echo "Checking for running Flask app..."
             thePID=$(pgrep -f "python3 app.py")
 
-            if [[ "$thePID" > "0" ]]; then
+            if [[ "$thePID" -gt 0 ]]; then
               echo "Flask app is running. Stopping it..."
               echo "kill $thePID"
               kill "$thePID"
