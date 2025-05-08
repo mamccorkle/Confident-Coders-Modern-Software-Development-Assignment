@@ -38,8 +38,14 @@ jobs:
               echo "Flask app is not running."
             fi
             
+            echo "Changing Directories..."
             cd /home/${{ secrets.GCP_VM_USER }}/Code/Confident-Coders-Modern-Software-Development-Assignment
-            pkill -f app.py
+            
+            echo "Getting fresh code..."
             git pull origin main
+            
+            echo "Installing requirements..."
             pip3 install -r requirements.txt
+            
+            echo "Running the app..."
             python3 app.py
