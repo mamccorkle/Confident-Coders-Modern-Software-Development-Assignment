@@ -9,6 +9,10 @@ app = Flask(__name__)
 ##############################################################################
 
 
+def add(a, b):
+    return a + b
+
+
 # This function will get a list of all games so that it can be displayed on
 # the main landing page:
 def get_all_games():
