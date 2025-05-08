@@ -34,7 +34,7 @@ jobs:
               echo "Flask app is running. Stopping it..."
               echo "kill $thePID"
               kill "$thePID"
-              echo "Completed"
+              echo "Completed" 
             else
               echo "Flask app is not running."
             fi
