@@ -29,6 +29,7 @@ jobs:
           script: |
             echo "Checking for running Flask app..."
             thePID=$(pgrep -f "python3 app.py")
+            echo "thePID: $thePID"
 
             if [[ $thePID -ne 0 ]]
             then
