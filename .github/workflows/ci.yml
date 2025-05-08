@@ -20,7 +20,7 @@ jobs:
         run: pip install pytest
       - name: Run testing
         run: pytest
-      - name: Deploy to GCP VM via SSH ${{ secrets.GCP_VM_USER }}
+      - name: Deploy to GCP VM via SSH
         uses: appleboy/ssh-action@v0.1.10
         with:
           host: ${{ secrets.GCP_VM_HOST }}
