@@ -31,7 +31,7 @@ jobs:
             thePID=$(pgrep -f "python3 app.py")
             echo "thePID: $thePID"
 
-            if [ $thePID -gt 0 ]; then
+            if $thePID -gt 0; then
               echo "Flask app is running. Stopping it..."
               echo "kill $thePID"
               kill $thePID
