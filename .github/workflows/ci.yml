@@ -38,7 +38,7 @@ jobs:
             else
               echo "Flask app is not running."
             fi
-            
+             
             echo "Changing Directories..."
             cd /home/${{ secrets.GCP_VM_USER }}/Code/Confident-Coders-Modern-Software-Development-Assignment
             
