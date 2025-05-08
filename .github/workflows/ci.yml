@@ -27,6 +27,14 @@ jobs:
           username: ${{ secrets.GCP_VM_USER }}
           key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
           script: |
+            echo "Checking for running Flask app..."
+            if pgrep -f "python app.py" > /dev/null
+            then
+              echo "Flask app is running. Stopping it..."
+              pkill -f "python app.py"
+            else
+              echo "Flask app is not running."
+            fi
             cd /home/${{ secrets.GCP_VM_USER }}/Code/Confident-Coders-Modern-Software-Development-Assignment
             pkill -f app.py
             git pull origin main
