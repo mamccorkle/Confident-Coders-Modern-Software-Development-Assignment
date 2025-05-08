@@ -28,7 +28,7 @@ jobs:
           key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
           script: |
             echo "Checking for running Flask app..."
-            if pgrep -f "python app.py" > /dev/null
+            if pgrep -f "python3 app.py" > /dev/null
             then
               echo "Flask app is running. Stopping it..."
               pkill -f "app.py"
