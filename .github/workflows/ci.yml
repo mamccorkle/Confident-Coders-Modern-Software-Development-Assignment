@@ -33,7 +33,8 @@ jobs:
             if [[ $? -eq 0 ]]
             then
               echo "Flask app is running. Stopping it..."
-              pkill -f "app.py"
+              thePID=$(pgrep -f "python3 app.py")
+              kill thePID
             else
               echo "Flask app is not running."
             fi
