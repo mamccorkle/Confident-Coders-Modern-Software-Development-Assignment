@@ -28,6 +28,7 @@ jobs:
           key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
           script: |
             cd /home/${{ secrets.GCP_VM_USER }}/Code/Confident-Coders-Modern-Software-Development-Assignment
+            pkill -f app.py
             git pull origin main
             pip3 install -r requirements.txt
             python3 app.py
