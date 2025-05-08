@@ -31,7 +31,7 @@ jobs:
             if pgrep -f "python app.py" > /dev/null
             then
               echo "Flask app is running. Stopping it..."
-              pkill -f "python app.py"
+              pkill -f "app.py"
             else
               echo "Flask app is not running."
             fi
