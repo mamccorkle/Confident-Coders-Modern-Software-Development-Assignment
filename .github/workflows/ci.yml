@@ -38,6 +38,12 @@ jobs:
             rm -rf /tmp/tmpRepo
             git clone https://github.com/mamccorkle/Confident-Coders-Modern-Software-Development-Assignment.git /tmp/tmpRepo
             
+            echo "Checking for the Dockerfile..."
+            if [ ! -f Dockerfile ]; then
+              echo "ERROR: Dockerfile not found in $(pwd)"
+              exit 1
+            fi
+            
             echo "Create the new Docker image..."
             cd /tmp/tmpRepo
             sudo docker build -t leaderboard .
