@@ -21,33 +21,31 @@
   <div class="container mt-5">
 <!--    <h1 class="text-center mb-4">Game Leaderboards</h1>-->
     <div class="hero-content text-center text-white">
-        <h1>Welcome to the Game Leaderboards! This is a test of the national broadcasting system!!</h1>
+        <h1>Welcome to the Game Leaderboards!</h1>
         <p>Track your high scores and achievements across various games</p>
     </div>
     <h2 class="mt-5">Available Games</h2>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       {% for game in games %}
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{ game[1] }}</h5>
-            <p class="card-text">{{ game[2] }}</p>
-<!--            <a href="/game/{{ game[0] }}" class="btn btn-info">View Game Details</a>-->
-<!--            <a href="/leaderboard/{{ game[1] }}" class="btn btn-primary">View Leaderboard</a>-->
-            <a href="/game/{{ game[0] }}" class="btn btn-info">
-              <i class="fas fa-gamepad"></i> View Game Details
-            </a>
-            <a href="/leaderboard/{{ game[1] }}" class="btn btn-primary">
-              <i class="fas fa-trophy"></i> View Leaderboard
-            </a>
+        <div class="col">
+  <div class="card h-100">
+    <img src="{{ url_for('static', filename='game_images/' ~ game[3]) }}" class="card-img-top" alt="{{ game[1] }} image">
+    <div class="card-body">
+      <h5 class="card-title">{{ game[1] }}</h5>
+      <p class="card-text">{{ game[2] }}</p>
+      <a href="/game/{{ game[0] }}" class="btn btn-info">
+        <i class="fas fa-gamepad"></i> View Game Details
+      </a>
+      <a href="/leaderboard/{{ game[1] }}" class="btn btn-primary">
+        <i class="fas fa-trophy"></i> View Leaderboard
+      </a>
+      <form action="/delete_game/{{ game[0] }}" method="POST" style="display:inline;">
+        <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
+      </form>
+    </div>
+  </div>
+</div>
 
-            <form action="/delete_game/{{ game[0] }}" method="POST" style="display:inline;">
-              <button type="submit" class="btn btn-danger"><i class="fas fa-trash-alt"></i> Delete</button>
-            </form>
-
-          </div>
-        </div>
-      </div>
       {% endfor %}
     </div>
 
