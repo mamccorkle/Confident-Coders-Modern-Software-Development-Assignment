@@ -39,6 +39,7 @@ jobs:
             git clone https://github.com/mamccorkle/Confident-Coders-Modern-Software-Development-Assignment.git /tmp/tmpRepo
             
             echo "Checking for the Dockerfile..."
+            cd /tmp/tmpRepo
             if [ ! -f Dockerfile ]; then
               echo "ERROR: Dockerfile not found in $(pwd)"
               exit 1
