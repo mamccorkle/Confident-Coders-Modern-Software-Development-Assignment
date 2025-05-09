@@ -18,7 +18,10 @@ def add(a, b):
 def get_all_games():
     conn = sqlite3.connect('MSD-P01-LeaderBoard.sqlite')
     cursor = conn.cursor()
-    cursor.execute("SELECT game_id, game_name, description, image_filename FROM games")
+    cursor.execute("SELECT game_id, "
+                   "game_name, "
+                   "description, "
+                   "image_filename FROM games")
     games = cursor.fetchall()
     conn.close()
     return games
