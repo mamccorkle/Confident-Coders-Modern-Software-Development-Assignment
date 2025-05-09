@@ -27,26 +27,20 @@ jobs:
           username: ${{ secrets.GCP_VM_USER }}
           key: ${{ secrets.GCP_SSH_PRIVATE_KEY }}
           script: |
-            echo "Checking for running Flask app..."
-            thePID=$(pgrep -f "python3 app.py")
-            echo "PGREP: " $(pgrep -f "python3 app.py")
-            if [[ "$thePID" -gt 0 ]]; then
-              echo "Flask app is running. Stopping it..."
-              echo "kill $thePID"
-              kill "$thePID"
-              echo "Completed" 
-            else
-              echo "Flask app is not running."
-            fi
+            echo "Cloning and Dockerizing a fresh copy of the flask app..."
+            set -e
             
-            echo "Changing Directories..."
-            cd /home/${{ secrets.GCP_VM_USER }}/Code/Confident-Coders-Modern-Software-Development-Assignment
+            echo "Stop the Docker container..."
+            sudo docker ps -q | xargs -r sudo docker stop
+            sudo docker ps -a -q | xargs -r sudo docker rm
             
-            echo "Getting fresh code..."
-            git pull origin main
+            echo "Get the current version on the repo..."
+            rm -rf /tmp/tmpRepo
+            git clone https://github.com/mamccorkle/Confident-Coders-Modern-Software-Development-Assignment.git /tmp/tmpRepo
             
-            echo "Installing requirements..."
-            pip3 install -r requirements.txt
+            echo "Create the new Docker image..."
+            cd /tmp/tmpRepo
+            sudo docker build -t leaderboard .
             
-            echo "Running the app..."
-            python3 app.py
+            echo "Start the Docker container in detached mode..."
+            sudo docker run -d --name leaderboard_container -p 80:5000 leaderboard
